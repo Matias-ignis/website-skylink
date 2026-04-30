@@ -1,6 +1,6 @@
 
 import type { Metadata } from 'next';
-import { Inter } from 'next/font/google';
+import { Inter, Montserrat } from 'next/font/google';
 import { Toaster } from "@/components/ui/sonner";
 import { ThemeProvider } from '@/components/ThemeProvider'
 import AppWideNavbar from '@/components/layout/AppWideNavbar'
@@ -12,6 +12,14 @@ import './globals.css';
 const inter = Inter({
   subsets: ['latin'],
   display: 'swap',
+  variable: '--font-inter',
+});
+
+const montserrat = Montserrat({
+  subsets: ['latin'],
+  display: 'swap',
+  variable: '--font-montserrat',
+  weight: ['400', '500', '600', '700', '800', '900'],
 });
 
 export const metadata: Metadata = {
@@ -31,8 +39,9 @@ export default function RootLayout({
   return (
     <html lang="es" suppressHydrationWarning className="h-full !scroll-smooth">
       <body className={cn(
-        inter.className,
-        "h-full antialiased relative"
+        inter.variable,
+        montserrat.variable,
+        "font-body h-full antialiased relative"
       )}>
         <ThemeProvider
           attribute="class"

@@ -20,11 +20,13 @@ const InteractiveBackground = () => {
     const getColors = () => {
       if (resolvedTheme === 'dark') {
         return {
-          particleColor: 'hsl(45 80% 60%)',
+          // Gold-tinted particles for dark mode (Skylink gold #D4AF37)
+          particleColor: 'hsl(43 74% 49%)',
         };
       } else {
         return {
-          particleColor: 'hsl(30 70% 35%)',
+          // Subtle platinum particles for light mode
+          particleColor: 'hsl(213 27% 74%)',
         };
       }
     };
@@ -41,9 +43,9 @@ const InteractiveBackground = () => {
       constructor() {
         this.x = Math.random() * window.innerWidth;
         this.y = Math.random() * window.innerHeight;
-        this.size = Math.random() * 1 + 0.5;
-        this.speedX = (Math.random() - 0.5) * 0.3;
-        this.speedY = (Math.random() - 0.5) * 0.3;
+        this.size = Math.random() * 1 + 0.3;
+        this.speedX = (Math.random() - 0.5) * 0.2;
+        this.speedY = (Math.random() - 0.5) * 0.2;
       }
 
       update() {
@@ -76,7 +78,8 @@ const InteractiveBackground = () => {
     
     const init = () => {
       particles = [];
-      const numberOfParticles = (canvas.width * canvas.height) / 25000;
+      // Fewer particles for a more refined, premium look
+      const numberOfParticles = (canvas.width * canvas.height) / 35000;
       for (let i = 0; i < numberOfParticles; i++) {
         particles.push(new Particle());
       }
@@ -92,11 +95,12 @@ const InteractiveBackground = () => {
           const dy = particles[a].y - particles[b].y;
           const distance = Math.sqrt(dx * dx + dy * dy);
 
-          if (distance < 120) {
-            opacityValue = (1 - (distance / 120)) * 0.5; // Adjusted opacity
-            const colorHsl = resolvedTheme === 'dark' ? '45, 80%, 60%' : '30, 70%, 35%';
+          if (distance < 100) {
+            opacityValue = (1 - (distance / 100)) * 0.3;
+            // Use gold for dark mode, platinum for light mode
+            const colorHsl = resolvedTheme === 'dark' ? '43, 74%, 49%' : '213, 27%, 74%';
             ctx.strokeStyle = `hsla(${colorHsl}, ${opacityValue})`;
-            ctx.lineWidth = 1;
+            ctx.lineWidth = 0.5;
             ctx.beginPath();
             ctx.moveTo(particles[a].x, particles[a].y);
             ctx.lineTo(particles[b].x, particles[b].y);

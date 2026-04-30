@@ -3,57 +3,86 @@
 @tailwind utilities;
 
 @layer base {
+  /* ============================================
+     MODO DÍA — Limpieza Total
+     Base limpia y espaciosa, profesional
+     ============================================ */
   :root {
-    --background: 40 70% 96%;
-    /* Cream */
-    --foreground: 25 40% 25%;
-    /* Rich Brown (Café) */
-    --card: 0 0% 100%;
-    --card-foreground: 25 40% 25%;
+    --background: 210 40% 98%;       /* #F8FAFC - Base limpia */
+    --foreground: 222 47% 11%;       /* #0F172A - Negro Obsidiana para texto */
+
+    --card: 0 0% 100%;               /* Blanco puro para tarjetas */
+    --card-foreground: 222 47% 11%;
+
     --popover: 0 0% 100%;
-    --popover-foreground: 25 40% 25%;
-    --primary: 30 70% 35%;
-    /* Copper */
-    --primary-foreground: 0 0% 100%;
-    --secondary: 40 20% 90%;
-    --secondary-foreground: 25 30% 35%;
-    --muted: 40 20% 92%;
-    --muted-foreground: 25 25% 55%;
-    --accent: 40 85% 60%;
-    /* Gold */
-    --accent-foreground: 25 40% 15%;
+    --popover-foreground: 222 47% 11%;
+
+    --primary: 43 74% 49%;           /* #D4AF37 - Dorado principal */
+    --primary-foreground: 0 0% 100%; /* Blanco sobre dorado */
+
+    --secondary: 214 32% 91%;        /* #E2E8F0 - Platino Brillante */
+    --secondary-foreground: 222 47% 11%;
+
+    --muted: 210 40% 96%;            /* #F1F5F9 - Superficies */
+    --muted-foreground: 215 20% 45%;
+
+    --accent: 43 74% 49%;            /* Dorado como acento */
+    --accent-foreground: 222 47% 11%;
+
     --destructive: 0 84% 60%;
     --destructive-foreground: 0 0% 98%;
-    --border: 40 15% 88%;
-    --input: 40 15% 90%;
-    --ring: 30 70% 35%;
-    --radius: 0.5rem;
+
+    --border: 214 32% 91%;           /* #E2E8F0 */
+    --input: 214 32% 91%;
+    --ring: 43 74% 49%;              /* Dorado para focus ring */
+
+    --radius: 0.75rem;
+
+    /* Skylink custom tokens */
+    --skylink-gold: 43 74% 49%;         /* #D4AF37 */
+    --skylink-gold-bright: 43 89% 38%;  /* #B8860B */
+    --skylink-platinum: 213 27% 84%;    /* #CBD5E1 */
+    --skylink-obsidian: 222 47% 11%;    /* #0F172A */
   }
 
+  /* ============================================
+     MODO NOCHE — Elegancia Extrema (Default)
+     Fondo #0D0F12 con Oro y Platino
+     ============================================ */
   .dark {
-    --background: 220 25% 10%;
-    /* Premium Dark Blue */
-    --foreground: 45 75% 90%;
-    /* Light Gold */
-    --card: 220 25% 12%;
-    --card-foreground: 45 75% 90%;
-    --popover: 220 25% 12%;
-    --popover-foreground: 45 75% 90%;
-    --primary: 45 80% 60%;
-    /* Vibrant Gold */
-    --primary-foreground: 220 25% 10%;
-    --secondary: 220 25% 20%;
-    --secondary-foreground: 45 75% 90%;
-    --muted: 220 25% 20%;
-    --muted-foreground: 45 40% 70%;
-    --accent: 45 80% 60%;
-    /* Vibrant Gold */
-    --accent-foreground: 220 25% 10%;
-    --destructive: 0 70% 55%;
+    --background: 220 20% 7%;        /* #0D0F12 - Negro Obsidiana profundo */
+    --foreground: 214 32% 91%;       /* #E2E8F0 - Platino Brillante */
+
+    --card: 220 20% 11%;             /* #1C222C - Superficies elevadas */
+    --card-foreground: 214 32% 91%;
+
+    --popover: 220 20% 11%;
+    --popover-foreground: 214 32% 91%;
+
+    --primary: 43 74% 49%;           /* #D4AF37 - Dorado Mate elegante */
+    --primary-foreground: 220 20% 7%;
+
+    --secondary: 215 25% 27%;        /* #334155 - Platino Tenue */
+    --secondary-foreground: 214 32% 91%;
+
+    --muted: 215 25% 27%;            /* #334155 */
+    --muted-foreground: 215 20% 65%;
+
+    --accent: 43 74% 49%;
+    --accent-foreground: 220 20% 7%;
+
+    --destructive: 0 63% 50%;
     --destructive-foreground: 0 0% 98%;
-    --border: 220 25% 25%;
-    --input: 220 25% 30%;
-    --ring: 45 80% 60%;
+
+    --border: 215 25% 20%;
+    --input: 215 25% 22%;
+    --ring: 43 74% 49%;
+
+    /* Skylink custom tokens (dark) */
+    --skylink-gold: 43 74% 49%;
+    --skylink-gold-bright: 43 80% 55%;
+    --skylink-platinum: 215 25% 27%;
+    --skylink-obsidian: 220 20% 7%;
   }
 }
 
@@ -65,5 +94,77 @@
   body {
     @apply bg-background text-foreground;
     font-feature-settings: "rlig" 1, "calt" 1;
+  }
+
+  /* Smooth scrolling */
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+/* ============================================
+   UTILIDADES PERSONALIZADAS SKYLINK
+   ============================================ */
+@layer utilities {
+  /* Efecto Shimmer para botones CTA */
+  .shimmer-btn {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .shimmer-btn::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+      90deg,
+      transparent,
+      rgba(255, 255, 255, 0.2),
+      transparent
+    );
+    animation: shimmer 3s ease-in-out infinite;
+  }
+
+  @keyframes shimmer {
+    0% { left: -100%; }
+    100% { left: 100%; }
+  }
+
+  /* Gradiente dorado para bordes */
+  .border-gold-gradient {
+    border-image: linear-gradient(
+      135deg,
+      hsl(43 74% 49%),
+      hsl(213 27% 84%),
+      hsl(43 74% 49%)
+    ) 1;
+  }
+
+  /* Efecto de líneas de trazabilidad */
+  .glow-gold {
+    box-shadow: 0 0 20px hsla(43, 74%, 49%, 0.15),
+                0 0 40px hsla(43, 74%, 49%, 0.05);
+  }
+
+  .glow-gold-strong {
+    box-shadow: 0 0 30px hsla(43, 74%, 49%, 0.25),
+                0 0 60px hsla(43, 74%, 49%, 0.1);
+  }
+
+  /* Texto con gradiente dorado */
+  .text-gradient-gold {
+    background: linear-gradient(135deg, hsl(43 74% 49%), hsl(43 89% 55%));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  /* Fondo con vidrio esmerilado premium */
+  .glass-premium {
+    backdrop-filter: blur(20px) saturate(180%);
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
   }
 }

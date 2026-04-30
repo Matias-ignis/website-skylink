@@ -17,8 +17,8 @@ export default {
         },
         extend: {
             fontFamily: {
-                body: ['Inter', 'sans-serif'],
-                headline: ['Space Grotesk', 'sans-serif'],
+                body: ['var(--font-inter)', 'Inter', 'sans-serif'],
+                headline: ['var(--font-montserrat)', 'Montserrat', 'sans-serif'],
                 code: ['monospace'],
             },
             colors: {
@@ -62,19 +62,10 @@ export default {
                     '4': 'hsl(var(--chart-4))',
                     '5': 'hsl(var(--chart-5))',
                 },
-                sidebar: {
-                    DEFAULT: 'hsl(var(--sidebar-background))',
-                    foreground: 'hsl(var(--sidebar-foreground))',
-                    primary: 'hsl(var(--sidebar-primary))',
-                    'primary-foreground': 'hsl(var(--sidebar-primary-foreground))',
-                    accent: 'hsl(var(--sidebar-accent))',
-                    'accent-foreground': 'hsl(var(--sidebar-accent-foreground))',
-                    border: 'hsl(var(--sidebar-border))',
-                    ring: 'hsl(var(--sidebar-ring))',
-                },
-                // Custom architectural theme colors for direct use (e.g. gradients)
-                'arch-light-accent-subtle': 'hsl(var(--arch-light-accent-subtle))',
-                'arch-dark-accent-subtle': 'hsl(var(--arch-dark-accent-subtle))',
+                // Skylink brand tokens
+                'skylink-gold': 'hsl(var(--skylink-gold))',
+                'skylink-platinum': 'hsl(var(--skylink-platinum))',
+                'skylink-obsidian': 'hsl(var(--skylink-obsidian))',
             },
             borderRadius: {
                 lg: 'var(--radius)',
@@ -102,11 +93,21 @@ export default {
                     '0%': { opacity: '0', transform: 'translateY(10px)' },
                     '100%': { opacity: '1', transform: 'translateY(0)' },
                 },
+                shimmer: {
+                    '0%': { left: '-100%' },
+                    '100%': { left: '100%' },
+                },
+                'pulse-glow': {
+                    '0%, 100%': { boxShadow: '0 0 20px hsla(43, 74%, 49%, 0.15)' },
+                    '50%': { boxShadow: '0 0 40px hsla(43, 74%, 49%, 0.3)' },
+                },
             },
             animation: {
                 'accordion-down': 'accordion-down 0.2s ease-out',
                 'accordion-up': 'accordion-up 0.2s ease-out',
                 'fade-in': 'fadeIn 0.5s ease-out forwards',
+                'shimmer': 'shimmer 3s ease-in-out infinite',
+                'pulse-glow': 'pulse-glow 3s ease-in-out infinite',
             },
         },
     },
